@@ -1,0 +1,15 @@
+import library
+get corpus
+create a dictionary to count different occurrences of degrees
+get collection of music within corpus
+create a list composed of the list that makes up each element of the collections
+for each piece in the list of pieces
+    choose piece
+    get the melody line
+    ?if have multiple lines of music, collapse them into 1?
+    analyze the key of the piece
+    (get correlation Coefficient?)
+    save analyzed key mode
+    transpose key to chosen tonic, same mode
+    get pitches
+    look through pitches for a piece, and tally pitch occurrences in dictionary
