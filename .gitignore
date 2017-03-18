@@ -37,3 +37,9 @@
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# Folders #
+###########
+sourceText
+word_pronounciation_dictionary
+test_modules\notes_by_frequency_action_plan.txt
