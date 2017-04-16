@@ -43,3 +43,10 @@ Thumbs.db
 sourceText
 word_pronounciation_dictionary
 test_modules\notes_by_frequency_action_plan.txt
+
+test_modules/sample_input/anne_april.txt
+test_modules/sample_input/don_april.txt
+test_modules/sample_input/michael.txt
+test_modules/sample_output/anne_4_12_2017.mid
+test_modules/sample_output/don_s_4_12_2017.mid
+test_modules/sample_output/uncle_michael.mid
