@@ -50,3 +50,8 @@ test_modules/sample_input/michael.txt
 test_modules/sample_output/anne_4_12_2017.mid
 test_modules/sample_output/don_s_4_12_2017.mid
 test_modules/sample_output/uncle_michael.mid
+test_modules/sample_input/flawess.txt
+test_modules/sample_output/analyzing_compiled_note_frequency_output.xlsx
+test_modules/sample_output/flawless.mid
+test_modules/sample_output/flawless.txt
+test_modules/sample_output/flawless2.mid
