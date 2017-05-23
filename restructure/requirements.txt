@@ -1,0 +1,7 @@
+Development Dependencies
+------------------------
+
+A pip requirements file should be placed at the root of the repository. It should specify the dependencies required to contribute to the project: testing, building, and generating documentation.
+Info about pip requirements files: https://pip.pypa.io/en/stable/user_guide/#requirements-files
+
+If your project has no development dependencies, or you prefer development environment setup via setup.py, this file may be unnecessary.
