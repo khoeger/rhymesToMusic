@@ -12,7 +12,7 @@ encodingType = "IBM500"
 # Helpers
 
 def engTextFromTxt(inputFile,encodingType):
-    """ 
+    """
         read text file using western european fonts
     """
     with open(file=inputFile,mode='r', encoding=encodingType) as inputText:
