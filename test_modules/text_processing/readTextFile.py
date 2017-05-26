@@ -14,19 +14,25 @@ unwantedRegexes =   ["%\\n",
 
 # Helpers
 def engTextFromTxt(inputFile,encodingType):
-    """
-        read text file using western european fonts
-    """
+    #"""
+    #    read text file using western european fonts
+    #"""
     with open(file=inputFile,mode='r', encoding=encodingType) as inputText:
         read_data = inputText.read()
         rText = read_data.encode(encoding=encodingType, errors="strict")
-        return(rText)
-
+        print("mode 'r'")
+        print("read_data")
+        print(type(read_data))
+        print(len(read_data))
+        inputText.close()
+    return(rText)
+        #return(read_data)
+"""
 def engTextFromTxt2(inputFile,encodingType,unwantedRegexes):
-    """
-        split file into new lines
-        read text file
-    """
+    #"
+    #    split file into new lines
+    #    read text file
+    #"
     with open(file=inputFile,mode='r', encoding=encodingType) as inputText:
         read_data = inputText.read()
         #rText = read_data.encode(encoding=encodingType, errors="strict")
@@ -37,9 +43,22 @@ def engTextFromTxt2(inputFile,encodingType,unwantedRegexes):
             print(rText)
         #return(rText)
 
+def engTextFromTxt3(inputFile,encodingType):
+    #"
+        #read text file using western european fonts
+    #"
+    with open(file=inputFile,mode='r+t', encoding=encodingType) as inputText:
+        read_data = inputText.read()
+        print(len(read_data))
+        rText = read_data.encode(encoding=encodingType, errors="strict")
+        print(type(read_data))
+    return(rText)
+        #return(read_data)
+"""
 #Testing
 testObj = engTextFromTxt(inputFile,encodingType)
-testObj2 = engTextFromTxt2(inputFile,encodingType,unwantedRegexes)
+#testObj2 = engTextFromTxt2(inputFile,encodingType,unwantedRegexes)
+#testObj3 = engTextFromTxt3(inputFile,encodingType)
 
 print("\n \n \n")
 print(type(testObj))
