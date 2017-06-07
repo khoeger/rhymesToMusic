@@ -4,7 +4,9 @@
 """
 # Constants
 inputFile = "C:\\Users\\katar\\Documents\\2017\\music\\computerMusic\\projects\\rhymesToMusic\\test_modules\\sample_input\\raven.txt"
-encodingType = "IBM500"
+inputFile2 = "C:\\Users\\katar\\Documents\\2017\\music\\computerMusic\\projects\\rhymesToMusic\\test_modules\\sample_input\\handkerchief.txt"
+inputFile3 = "C:\\Users\\katar\\Documents\\2017\\music\\computerMusic\\projects\\rhymesToMusic\\test_modules\\sample_input\\10things.txt"
+encodingType = "utf-8"#"IBM500"
 unwantedRegexes =   ["%\\n",
                     "\\xe2\\x80\\x94",
                     "\\xe2\\x80\\x9c",
@@ -13,10 +15,10 @@ unwantedRegexes =   ["%\\n",
                     ]
 
 # Helpers
-def engTextFromTxt(inputFile,encodingType):
-    #"""
+"""def engTextFromTxt(inputFile,encodingType):
+    #
     #    read text file using western european fonts
-    #"""
+    #
     with open(file=inputFile,mode='r', encoding=encodingType) as inputText:
         read_data = inputText.read()
         rText = read_data.encode(encoding=encodingType, errors="strict")
@@ -54,13 +56,24 @@ def engTextFromTxt3(inputFile,encodingType):
         print(type(read_data))
     return(rText)
         #return(read_data)
-"""
+
+def engTextFromTxt4(inputFile,encodingType):
+    #"""
+    #    read text file using western european fonts
+    #"""
+    with open(file=inputFile,mode='r', encoding=encodingType) as inputText:
+        read_data = inputText.read()
+        inputText.close()
+    return(read_data)
+        #return(read_data)
+#"""
 #Testing
-testObj = engTextFromTxt(inputFile,encodingType)
+#testObj = engTextFromTxt(inputFile,encodingType)
 #testObj2 = engTextFromTxt2(inputFile,encodingType,unwantedRegexes)
 #testObj3 = engTextFromTxt3(inputFile,encodingType)
-
+testObj4 = engTextFromTxt3(inputFile2,encodingType)
 print("\n \n \n")
-print(type(testObj))
+print(type(testObj4))
 print("\n \n \n")
-print(testObj)
+print(testObj4)
+#"""
