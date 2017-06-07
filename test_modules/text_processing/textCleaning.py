@@ -38,9 +38,17 @@ def byteToString( byteString ):
     #newString = re.sub(pattern, repl, bytesToString)
     return(bytesToString)#newString)
 
-def removeEndPunct( inString ):
-    " take in string, output string without punctuation at ends of words
-    "
+def removeEdgePuncts( inString ):
+    """ take in string, output string without punctuation at ends of words
+    """
+    pattern1 = "[\n ][^a-zA-Z]+"
+    pattern2 = "[^a-zA-Z]+[\n ]"
+    repl = " "
+    noFrontPunc = re.sub(pattern1,repl,inString)
+    noEndPunc = re.sub(pattern2,repl, noFrontPunc)
+    return(noEndPunc)
+
+
 
 #print(testObj)
 #print("\n \n \n")
@@ -49,3 +57,6 @@ print(newString)
 print("\n")
 lNewString = newString.lower()
 print(lNewString)
+print("\n")
+remFrontPunc = removeEdgePuncts(lNewString)
+print(remFrontPunc)
