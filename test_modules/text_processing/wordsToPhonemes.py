@@ -3,6 +3,8 @@
     - break into words
     - look up words in cmudict
     - return list of phonemes
+
+    python -E test_modules\text_processing\wordsToPhonemes.py PYTHONLEGACYWINDOWSSTDIO
 """
 from textCleaning import *
 
