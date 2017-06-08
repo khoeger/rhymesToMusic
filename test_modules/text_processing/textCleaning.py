@@ -22,7 +22,7 @@ import re
 #--- Testing
 testObj = engTextFromTxt3(inputFile3,encodingType)
 #w_breaks = testObj.split(unwantedRegexes[0])
-print("\n")# \n \n")
+#print("\n")# \n \n")
 #print(w_breaks)
 
 # Add appostrophes
@@ -48,15 +48,33 @@ def removeEdgePuncts( inString ):
     noEndPunc = re.sub(pattern2,repl, noFrontPunc)
     return(noEndPunc)
 
+def removeNums( string ):
+    """ if there is a number in a string, remove the number
+    """
+    pattern = "[0-9]+"
+    repl = ""
+    newString = re.sub(pattern,repl,string)
+    return(newString)
+
+def rmNumsFrmStrList( stringList ):
+    """ replace strings in  stringList with numberless strings """
+    for i in range(0,len(stringList)):
+        string = stringList[i]
+        newString = removeNums(string)
+        stringList[i]=newString
+    return(stringList)
+
+
+
 
 
 #print(testObj)
 #print("\n \n \n")
 newString = byteToString(testObj)
-print(newString)
-print("\n")
+#print(newString)
+#print("\n")
 lNewString = newString.lower()
-print(lNewString)
-print("\n")
-remFrontPunc = removeEdgePuncts(lNewString)
-print(remFrontPunc)
+#print(lNewString)
+#print("\n")
+remPunc = removeEdgePuncts(lNewString)
+#print(remPunc)
