@@ -32,6 +32,7 @@ from nltk.tokenize import TweetTokenizer
 from text_processing.readTextFile import *
 from text_processing.textCleaning import *
 from text_processing.wordsToPhonemes import *
+from dictionary_construction.phonemeDictionary import *
 
 """
 #   Constants
@@ -79,6 +80,11 @@ print("Missing words list\n")
 print(phonemesOut[1])
 
 print("\n \n \n")
-print("Missing words list\n")
+print("Phoneme list, without stress marks\n")
 cleanPList = cleanPhonemeList(phonemesOut[0])
 print(cleanPList)
+
+print("\n \n \n")
+print("Tally Phonemes in Dictionary\n")
+phonemeDictionary = tallyList(cleanList,{})
+print(phonemeDictionary)
