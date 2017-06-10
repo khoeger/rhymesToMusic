@@ -67,25 +67,3 @@ def cleanPhonemeList(phonemeList):
         cleanEntry = rmNumsFrmStrList(phonemeList[i])
         cleanPList.append(cleanEntry)
     return(cleanPList)
-
-"""
-
-# Testing
-print('\n')
-print(remPunc)
-wordList = tknzr.tokenize(remPunc)
-print('\n')
-print(wordList)
-print('\n')
-testPhoneme =word2Phoneme(wordList[1],d)
-print(testPhoneme)
-print('\n')
-phonemesOut = wordL2phonemeL(wordList,d)
-print(phonemesOut[0])
-print('\n')
-print(phonemesOut[1])
-#print(phonemesOut[2])
-print('\n')
-cleanPList = cleanPhonemeList(phonemesOut[0])
-print(cleanPList)
-"""
