@@ -14,6 +14,9 @@ Currently:
 Future:
     - make a proper testing suite, outside of this folder
 
+To Run:
+    python -E restructure\rhymesToMusic\main.py PYTHONLEGACYWINDOWSSTDIO
+
 Katarina Hoeger
 June 2017
 """
@@ -38,6 +41,7 @@ from dictionary_construction.phonemeDictionary import *
 from music_processing.read_corpus import *
 from music_processing.cleanPieces import *
 from dictionary_construction.noteFreqDictionary import *
+from numerical_operations.dictionaryEntries import *
 
 """
 #   Constants
@@ -50,6 +54,9 @@ encodingType2 = "utf-8"#"IBM500" #"utf-8"
 corpus_chosen = 'airdsAirs'
 final_major_key = 'C5'#'F#4'
 final_minor_key = 'A4'#'Eb4'
+AMPLDatFilepath = "\\numerical_operations\\assignPhonemesNotes.dat"
+AMPLModFilepath = "\\numerical_operations\\assignPhonemesNotes.mod"
+AMPLRunFilepath = "\\numerical_operations\\assignPhonemesNotes.run"
 
 
 """
@@ -134,7 +141,25 @@ for pieceNo in range(0,len(corpusElements)):
     pitchList = melodyTranspose.pitches
     shortPitchList = [str(p) for p in pitchList]
     [majorDict, minorDict] = countDegrees(shortPitchList, minorDict, majorDict, melodyKey.mode, majScale, minScale)
+print('\n')
 print("Major Key Scale Degree Frequency Dictionary")
 print(majorDict)
-print("inor Key Scale Degree Frequency Dictionary")
+print('\n')
+print("Minor Key Scale Degree Frequency Dictionary")
 print(minorDict)
+print('\n')
+
+print("Tally dictionary size: Phonemes")
+tallyPhonemes = sumDictValues(phonemeDictionary)
+print(tallyPhonemes)
+print('\n')
+
+print("Tally dictionary size: Major Dictionary")
+tallyMajDict = sumDictValues(majorDict)
+print(tallyMajDict)
+print('\n')
+
+print("Tally dictionary size: Minor Dictionary")
+tallyMinorDictionary = sumDictValues(minorDict)
+print(tallyMinorDictionary)
+print('\n')
