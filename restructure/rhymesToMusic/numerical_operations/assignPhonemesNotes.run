@@ -1,0 +1,6 @@
+#reset;
+#model assignPhonemesNotes.mod;
+solve;
+
+display amountPlaced;
+display Degree;

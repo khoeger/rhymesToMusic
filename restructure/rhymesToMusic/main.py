@@ -42,6 +42,7 @@ from music_processing.read_corpus import *
 from music_processing.cleanPieces import *
 from dictionary_construction.noteFreqDictionary import *
 from numerical_operations.dictionaryEntries import *
+from numerical_operations.createAMPL import *
 
 """
 #   Constants
@@ -54,9 +55,11 @@ encodingType2 = "utf-8"#"IBM500" #"utf-8"
 corpus_chosen = 'airdsAirs'
 final_major_key = 'C5'#'F#4'
 final_minor_key = 'A4'#'Eb4'
-AMPLDatFilepath = "\\numerical_operations\\assignPhonemesNotes.dat"
-AMPLModFilepath = "\\numerical_operations\\assignPhonemesNotes.mod"
-AMPLRunFilepath = "\\numerical_operations\\assignPhonemesNotes.run"
+AMPLDatFilepath = "C:\\Users\\katar\\Documents\\2017\\music\\computerMusic\\projects\\rhymesToMusic\\restructure\\rhymesToMusic\\numerical_operations\\assignPhonemesNotes.dat"
+AMPLModFilepath = "C:\\Users\\katar\\Documents\\2017\\music\\computerMusic\\projects\\rhymesToMusic\\restructure\\rhymesToMusic\\numerical_operations\\assignPhonemesNotes.mod"
+AMPLRunFilepath = "C:\\Users\\katar\\Documents\\2017\\music\\computerMusic\\projects\\rhymesToMusic\\restructure\\rhymesToMusic\\numerical_operations\\assignPhonemesNotes.run"
+weight = "1000"
+assignments = "1"
 
 
 """
@@ -163,3 +166,7 @@ print("Tally dictionary size: Minor Dictionary")
 tallyMinorDictionary = sumDictValues(minorDict)
 print(tallyMinorDictionary)
 print('\n')
+
+print("Write .dat file at")
+print(AMPLDatFilepath)
+constructDatFile(AMPLDatFilepath, majorDict, tallyMajDict, phonemeDictionary, tallyPhonemes, weight, assignments)
