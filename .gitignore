@@ -62,3 +62,17 @@ restructure/dictionary_construction/__pycache__/
 restructure/music_processing/__pycache__/
 restructure/numerical_operations/__pycache__/
 restructure/text_processing/__pycache__/
+
+
+restructure/rhymesToMusic/dictionary_construction/__pycache__/
+restructure/rhymesToMusic/music_processing/__pycache__/
+restructure/rhymesToMusic/numerical_operations/FeasepumpBFL_6_17_2017.txt
+restructure/rhymesToMusic/numerical_operations/FeaspumpAB_6_17_2017.txt
+restructure/rhymesToMusic/numerical_operations/Run1_6_12_2017_10pm_2hrs35min.txt
+restructure/rhymesToMusic/numerical_operations/__pycache__/
+restructure/rhymesToMusic/numerical_operations/test.dat
+restructure/rhymesToMusic/text_processing/__pycache__/
+test_modules/sample_output/test_10things.mid
+test_modules/sample_output/test_handkerchief.mid
+test_modules/sample_output/test_raven.mid
+test_modules/text_processing/__pycache__/
