@@ -55,3 +55,10 @@ test_modules/sample_output/analyzing_compiled_note_frequency_output.xlsx
 test_modules/sample_output/flawless.mid
 test_modules/sample_output/flawless.txt
 test_modules/sample_output/flawless2.mid
+
+literatureReview
+
+restructure/dictionary_construction/__pycache__/
+restructure/music_processing/__pycache__/
+restructure/numerical_operations/__pycache__/
+restructure/text_processing/__pycache__/
