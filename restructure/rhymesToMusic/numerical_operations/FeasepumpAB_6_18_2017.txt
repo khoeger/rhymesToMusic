@@ -1,0 +1,206 @@
+***Your comments***
+
+Test Modified Model - MILP
+"Rhymes to Music Mod"
+
+6/18/2017
+1:43PM
+FEASPUMP AB
+
+***feaspump***
+
+
+448 variables:
+        224 binary variables
+        224 linear variables
+295 constraints, all linear; 1120 nonzeros
+        32 equality constraints
+        263 inequality constraints
+1 linear objective; 224 nonzeros.
+
+
+
+*** You chose the AB version of FP ***
+
+Registering SolutionTransformers...done
+Registering Var Rankers...done
+Registering LinearPropagatorFactories...done
+Registering VarBoundFactory...done
+Registering LogicFactory...done
+Output dir: ./tmp/ampl
+>config
+        probName = ampl
+        runName = default
+        presolve = 1
+        numThreads = 4
+        cpxVersion = 12070100
+        gitHash = d25e609-dirty
+        fpVersion = 2.2
+        printSol = 1
+        storeSol = 1
+>originalProblem
+        nvars = 448
+        binaries = 224
+        integers = 0
+        nrows = 295
+>presolvedProblem
+        hasPresolve = 1
+        emptyProblem = 0
+        offset = 0
+>presolvedProblem
+        nvars = 416
+        binaries = 192
+        integers = 0
+        nrows = 263
+>config
+        frac2int = propround
+        firstOptMethod = default
+        reOptMethod = default
+        timeLimit = 7200
+        pumpReduceIterLimit = -1
+        iterLimit = 10000
+        s1IterLimit = 5000
+        s1MaxMissedDecrease = 1000
+        maxMissedDecrease = 2000
+        maxRestarts = 5000
+        avgFlips = 20
+        integralityEps = 1e-05
+        seed = 120507
+        sigmaThr = 1e-06
+        optIterLimit = -1
+        reOptIterLimit = -1
+        alpha = 1
+        alphaFactor = 0.9
+        alphaDist = 0.005
+        doStage3 = 1
+        walksatPerturbe = 0
+        forceWalksat = 0
+        feasWalksat = 0
+        logPerturbation = 0
+        logDetails = 0
+        logIteration = 0
+        logTime = 0
+        logLP = 0
+>config
+        randomizedRounding = 1
+        logDetails = 0
+>config
+        ranker = FRAC
+        filterConstraints = 1
+>config
+        reverse = 0
+        rankNoise = 0.1
+        noiseAfter = 10
+>fpInit
+
+Propagators:
+logic 0
+varbound 192
+cardinality 0
+knapsack 71
+linear 0
+Filtered out 0
+        fixedCnt = 0
+        isBinary = 1
+        isPureInteger = 0
+CPXPARAM_TimeLimit                               7199.999990087992
+CPXPARAM_Threads                                 4
+Tried aggregator 1 time.
+LP Presolve eliminated 28 rows and 0 columns.
+Aggregator did 192 substitutions.
+Reduced LP has 43 rows, 224 columns, and 476 nonzeros.
+Presolve time = 0.00 sec. (0.25 ticks)
+
+Iteration log . . .
+Iteration:     1   Dual objective     =            -6.007678
+Iteration:    62   Dual objective     =            -1.000000
+relaxationTime = 0.00145416
+relaxationObjValue = -1
+  iter stage     alpha             origObj     #frac   sumfrac      dist P  #flips      time
+     1     1    0.9000               -0.94         0    0.0000    0.0000                0.00
+>stats
+        found = 1
+        stage = 2
+        totalLpTime = 0.000527291
+        totalRoundingTime = 0.000123307
+        iterations = 1
+        time = 0.00222359
+        perturbationCnt = 0
+        restartCnt = 0
+>results
+        firstValue = -0.936595
+        firstIt = 1
+        firstTime = 0.00221614
+        lastValue = -0.936595
+        lastIt = 1
+        lastTime = 0.00221797
+Solution: =obj= -0.94
+amountPlaced[1,'AY']= 0.06
+amountPlaced[1,'HH']= 0.04
+amountPlaced[1,'D']= 0.03
+amountPlaced[1,'T']= 0.10
+amountPlaced[2,'DH']= 0.03
+amountPlaced[2,'W']= 0.04
+amountPlaced[2,'M']= 0.05
+amountPlaced[3,'N']= 0.06
+amountPlaced[3,'AE']= 0.02
+amountPlaced[3,'IY']= 0.03
+amountPlaced[3,'Y']= 0.05
+amountPlaced[3,'AA']= 0.02
+amountPlaced[4,'Z']= 0.00
+amountPlaced[4,'S']= 0.03
+amountPlaced[4,'OW']= 0.01
+amountPlaced[4,'UW']= 0.04
+amountPlaced[5,'B']= 0.02
+amountPlaced[5,'CH']= 0.00
+amountPlaced[5,'EY']= 0.07
+amountPlaced[5,'G']= 0.00
+amountPlaced[5,'UH']= 0.01
+amountPlaced[5,'F']= 0.01
+amountPlaced[5,'ER']= 0.01
+amountPlaced[5,'AH']= 0.06
+amountPlaced[5,'AO']= 0.02
+amountPlaced[6,'R']= 0.04
+amountPlaced[6,'IH']= 0.05
+amountPlaced[6,'AW']= 0.00
+amountPlaced[7,'K']= 0.04
+amountPlaced[7,'EH']= 0.02
+forceDegree[1,'AY']= 1.00
+forceDegree[1,'HH']= 1.00
+forceDegree[1,'D']= 1.00
+forceDegree[1,'T']= 1.00
+forceDegree[1,'V']= 1.00
+forceDegree[1,'L']= 1.00
+forceDegree[2,'DH']= 1.00
+forceDegree[2,'W']= 1.00
+forceDegree[2,'M']= 1.00
+forceDegree[3,'N']= 1.00
+forceDegree[3,'AE']= 1.00
+forceDegree[3,'IY']= 1.00
+forceDegree[3,'Y']= 1.00
+forceDegree[3,'AA']= 1.00
+forceDegree[4,'Z']= 1.00
+forceDegree[4,'S']= 1.00
+forceDegree[4,'OW']= 1.00
+forceDegree[4,'UW']= 1.00
+forceDegree[5,'B']= 1.00
+forceDegree[5,'CH']= 1.00
+forceDegree[5,'EY']= 1.00
+forceDegree[5,'G']= 1.00
+forceDegree[5,'UH']= 1.00
+forceDegree[5,'F']= 1.00
+forceDegree[5,'ER']= 1.00
+forceDegree[5,'AH']= 1.00
+forceDegree[5,'AO']= 1.00
+forceDegree[6,'R']= 1.00
+forceDegree[6,'IH']= 1.00
+forceDegree[6,'AW']= 1.00
+forceDegree[7,'K']= 1.00
+forceDegree[7,'EH']= 1.00
+
+Propagators statistics (#prop called, #domain red):
+logic 0 0
+varbound 332 332
+cardinality 0 0
+knapsack 52 182
+linear 0 0
