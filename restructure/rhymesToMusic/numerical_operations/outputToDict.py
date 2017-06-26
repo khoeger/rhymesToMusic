@@ -24,12 +24,31 @@ def listAssignments(readFile):
     patternList = rePattern.findall(readFile)
     return(patternList)
 
-def extractDegreePhonemeString(inString, sdPatt, pPatt):
+def extractDegreePhonemeString(inString, scaleDegreePattern, phonemePattern):
     """
     Given a string, sdPatt, pPatt return wanted degree, phoneme
     """
     #scaleDegreePattern = "\d"
     #phonemePattern =  "'[A-X]+'"
-    scaleDeg = int(sdPatt.findall(inString))
-    phonemePatt = pPatt.findall(inString)
-    return([phonemePatt, scaleDeg])
+    scaleDeg = int(scaleDegreePattern.findall(inString)[0])
+    phonemeStr = phonemePattern.findall(inString)[-1]
+    return([phonemeStr, scaleDeg])
+
+def degPhonemeDict(inStringList):
+    """
+    Given a string list:
+    - initiate dictionary
+    - for each element of list
+        - extract scale degree
+        - extract phoneme pattern
+        - assign dictionary mapping
+    - return dicitionary
+    """
+    phonemeToDegreeDict = {}
+    scaleDegreePattern = re.compile("\d")
+    phonemePattern =  re.compile("[A-Z]+")
+
+    for element in inStringList:
+        [phonemeStr, scaleDeg] = extractDegreePhonemeString(element,scaleDegreePattern,phonemePattern)
+        phonemeToDegreeDict[phonemeStr] = scaleDeg
+    return phonemeToDegreeDict
