@@ -43,6 +43,7 @@ from music_processing.cleanPieces import *
 from dictionary_construction.noteFreqDictionary import *
 from numerical_operations.dictionaryEntries import *
 from numerical_operations.createAMPL import *
+from numerical_operations.outputToDict import *
 
 """
 #   Constants
@@ -51,6 +52,7 @@ print("Loading Constants & Inputs ...")
 inputFile = "C:\\Users\\katar\\Documents\\2017\\music\\computerMusic\\projects\\rhymesToMusic\\test_modules\\sample_input\\raven.txt"
 inputFile2 = "C:\\Users\\katar\\Documents\\2017\\music\\computerMusic\\projects\\rhymesToMusic\\test_modules\\sample_input\\handkerchief.txt"
 inputFile3 = "C:\\Users\\katar\\Documents\\2017\\music\\computerMusic\\projects\\rhymesToMusic\\test_modules\\sample_input\\10things.txt"
+feasepumpFile = "C:\\Users\\katar\\Documents\\2017\\music\\computerMusic\\projects\\rhymesToMusic\\restructure\\rhymesToMusic\\numerical_operations\\FeasepumpAB_6_18_2017.txt"
 encodingType2 = "utf-8"#"IBM500" #"utf-8"
 corpus_chosen = 'airdsAirs'
 final_major_key = 'C5'#'F#4'
@@ -170,3 +172,21 @@ print('\n')
 print("Write .dat file at")
 print(AMPLDatFilepath)
 constructDatFile(AMPLDatFilepath, majorDict, tallyMajDict, phonemeDictionary, tallyPhonemes, weight, assignments)
+
+"""
+    Some section on running AMPL NEOS server
+"""
+print('\n')
+print('\n')
+print("Extracting Feaspump AB results")
+feasepumpByte = engTextFromTxt3(feasepumpFile,encodingType2)
+print('\n')
+print("Feasepump Byte")
+print(feasepumpByte)
+print('\n')
+print("Feasepump Read")
+feasepumpRead = byteToString(feasepumpByte,encodingType2)
+print('\n')
+print("Feasepump Assignment List")
+listOfAssignments = listAssignments(feasepumpRead)
+print(listOfAssignments)
