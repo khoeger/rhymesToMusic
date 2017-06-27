@@ -174,7 +174,7 @@ print(AMPLDatFilepath)
 constructDatFile(AMPLDatFilepath, majorDict, tallyMajDict, phonemeDictionary, tallyPhonemes, weight, assignments)
 
 """
-    Some section on running AMPL NEOS server
+    Insert MISSING section on running AMPL NEOS server
 """
 #print('\n')
 print('\n')
@@ -191,13 +191,23 @@ print("Feasepump Assignment List")
 listOfAssignments = listAssignments(feasepumpRead)
 #print(listOfAssignments)
 print('\n')
-#print("Feasepump Assignment List, Entry 1")
-#lOA1 = listOfAssignments[0]
-#print(lOA1)
-#sdPatt= re.compile("\d")
-#pPatt=  re.compile("[A-Z]+")
-#testExtraction = extractDegreePhonemeString(lOA1,sdPatt,pPatt)
-print('\n')
 print("Build Phoneme, Degree Dictionary")
 phonemeDegreeDictionary = degPhonemeDict(listOfAssignments)
 print(phonemeDegreeDictionary)
+
+"""
+    Translate Text to Music using Dictionary
+    - read text file
+    - break text into list of words + punctuation
+    - beginning & end punctuation
+        - commas , -, -- , ; ,: are a beat.
+        - periods/exclamation points, question marks are two beats
+        - quotation marks are ignored
+        - new lines means start a new measure, rests fill rest of measure.
+        - two new lines means more than 1 measure of rest
+    - each word is a measure
+        - if a word is unknown: FIX LATER
+        - for known words:
+            -
+
+"""
