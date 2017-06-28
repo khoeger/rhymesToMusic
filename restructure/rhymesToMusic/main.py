@@ -100,7 +100,7 @@ wordList = tknzr.tokenize(remPunc)
 #print("\n \n \n")
 print("Phoneme List, with stress marks")
 phonemesOut = wordL2phonemeL(wordList,d)
-#print(phonemesOut[0])
+print(phonemesOut[0])
 
 #print("\n \n \n")
 print("Missing words list")
@@ -200,14 +200,23 @@ print(phonemeDegreeDictionary)
     - read text file
     - break text into list of words + punctuation
     - beginning & end punctuation
-        - commas , -, -- , ; ,: are a beat.
-        - periods/exclamation points, question marks are two beats
+        - *For right now* All [A-Z]' characters are a rest
+        - commas , -, -- , ; ,: are a beat rests.
+        - periods/exclamation points, question marks are two beats rests
         - quotation marks are ignored
         - new lines means start a new measure, rests fill rest of measure.
         - two new lines means more than 1 measure of rest
-    - each word is a measure
-        - if a word is unknown: FIX LATER
+    - each word
+        - if a word is unknown: FIX LATER - skip
         - for known words:
-            -
-
+            - break word into phonemes
+            - *For right now* ignore stresses
+            - *For right now* words are  measures
+            - *For right now* break measures into syllable sections for rhythm
 """
+# Read Text file = newString
+readPoemText = newString
+# Poem to "Chunks"
+chunkList = readPoemText.split()
+print("\nChunk List")
+print(chunkList)
