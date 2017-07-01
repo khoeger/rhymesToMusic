@@ -76,3 +76,4 @@ test_modules/sample_output/test_10things.mid
 test_modules/sample_output/test_handkerchief.mid
 test_modules/sample_output/test_raven.mid
 test_modules/text_processing/__pycache__/
+restructure/rhymesToMusic/parseTextAsMusic/__pycache__

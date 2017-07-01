@@ -39,7 +39,7 @@ def byteToString( byteString , encodingType ):
         - runs using inputFile3 only currently
         - works with 'python -E test_modules\\text_processing\\textCleaning.py PYTHONLEGACYWINDOWSSTDIO'
     """
-    pattern = "\\xe2\\x80\\x99"
+    pattern = re.compile("\\xe2\\x80\\x99")
     repl = "'"
     bytesToString = byteString.decode(encodingType,errors="ignore")
     #print(type(bytesToString))
@@ -49,8 +49,10 @@ def byteToString( byteString , encodingType ):
 def removeEdgePuncts( inString ):
     """ take in string, output string without punctuation at ends of words
     """
-    pattern1 = "[\n ][^a-zA-Z]+"
-    pattern2 = "[^a-zA-Z]+[\n ]"
+    #pattern2 = "[^a-zA-Z]+[\n ]"
+    #pattern1 = "[\n ][^a-zA-Z]+"
+    pattern1 = re.compile("[\n ][^a-zA-Z]+")
+    pattern2 = re.compile("[^a-zA-Z]+[\n ]")
     repl = " "
     noFrontPunc = re.sub(pattern1,repl,inString)
     noEndPunc = re.sub(pattern2,repl, noFrontPunc)
@@ -59,7 +61,7 @@ def removeEdgePuncts( inString ):
 def removeNums( string ):
     """ if there is a number in a string, remove the number
     """
-    pattern = "[0-9]+"
+    pattern = re.compile("[0-9]+")
     repl = ""
     newString = re.sub(pattern,repl,string)
     return(newString)

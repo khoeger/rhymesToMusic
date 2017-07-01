@@ -44,7 +44,7 @@ from dictionary_construction.noteFreqDictionary import *
 from numerical_operations.dictionaryEntries import *
 from numerical_operations.createAMPL import *
 from numerical_operations.outputToDict import *
-
+from parseTextAsMusic.parseText import *
 """
 #   Constants
 """
@@ -62,6 +62,7 @@ AMPLModFilepath = "C:\\Users\\katar\\Documents\\2017\\music\\computerMusic\\proj
 AMPLRunFilepath = "C:\\Users\\katar\\Documents\\2017\\music\\computerMusic\\projects\\rhymesToMusic\\restructure\\rhymesToMusic\\numerical_operations\\assignPhonemesNotes.run"
 weight = "1000"
 assignments = "1"
+outputPath = "C:\\Users\\katar\\Documents\\2017\\music\\computerMusic\\projects\\rhymesToMusic\\test_modules\\sample_output\\"
 
 
 """
@@ -130,9 +131,12 @@ sampleTranspose = transposeMelody(samplePiece, sampleKey, final_major_key, final
 #sampleTranspose.show('lily')
 #sampleTranspose.show('midi')
 
+
 """
     Modularize better!!!!
 """
+
+
 #print("\n \n \n")
 print("Count degree occurrences")
 #pitchList = sampleTranspose.pitches
@@ -220,3 +224,15 @@ readPoemText = newString
 chunkList = readPoemText.split()
 print("\nChunk List")
 print(chunkList)
+
+print("\nConvert select words to music")
+entireOutputPath1 = outputPath+"measure1.mid"
+measure1 = buildMeasure(chunkList[0],d,phonemeDegreeDictionary,majScale)
+measure1.write('midi',entireOutputPath1)
+measure1.show('lily')
+entireOutputPath2 = outputPath+"10things_major.mid"#"measure1.mid"
+print("\nBuild  piece, measure by measure")
+piece = buildPiece(chunkList,d,phonemeDegreeDictionary,majScale)
+print("\nOutput useable piece information")
+piece.write('midi',entireOutputPath2)
+piece.show("lily")
