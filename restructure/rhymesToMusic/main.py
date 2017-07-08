@@ -29,7 +29,8 @@ import re # Had to import manually in textCleaning.py.. Why?
 import music21 as mus # Had to import into read_corpus.py, cleanPieces.py
 from nltk.corpus import cmudict
 from nltk.tokenize import TweetTokenizer
-
+import pandas
+import pickle
 
 """
 #   Helper function module imports
@@ -116,7 +117,8 @@ cleanList = cleanPhonemeList(phonemesOut[0])
 print("Tally Phonemes in Dictionary\n")
 phonemeDictionary = tallyList(cleanList,{})
 print(phonemeDictionary)
-
+"""
+# Corpus Operations before pickle
 print("\n \n \n")
 print("Accessing Corpus")
 corpusElements = listElementsOfCorpus( corpus_chosen )
@@ -130,13 +132,13 @@ sampleKey = samplePiece.analyze('key')
 sampleTranspose = transposeMelody(samplePiece, sampleKey, final_major_key, final_minor_key)
 #sampleTranspose.show('lily')
 #sampleTranspose.show('midi')
-
+"""
 
 """
     Modularize better!!!!
 """
 
-
+"""
 #print("\n \n \n")
 print("Count degree occurrences")
 #pitchList = sampleTranspose.pitches
@@ -157,7 +159,44 @@ print('\n')
 print("Minor Key Scale Degree Frequency Dictionary")
 print(minorDict)
 print('\n')
+"""
+print("\nPlace dictionaries in pandas as series")
+phonemeSeries = pandas.Series(phonemeDictionary)
+majorPDName = corpus_chosen+"_pdseries_major"
+minorPDName = corpus_chosen+"_pdseries_minor"
+"""
+majorPDSeries = pandas.Series(majorDict)
+minorPDSeries = pandas.Series(minorDict)
+print("Major pandas series, airdsAirs")
+print(majorPDSeries)
+print("Minor pandas series, airdsAirs")
+print(minorPDSeries)
+majorPDSeries.to_pickle(majorPDName)
+minorPDSeries.to_pickle(minorPDName)
+"""
+pickleMajPDSeries = pandas.read_pickle(majorPDName)
+pickleMinPDSeries = pandas.read_pickle(minorPDName)
+print("\nPickled Pandas Major Scale Degree Dict")
+print(pickleMajPDSeries)
+print("Pickled Pandas Minor Scale Degree Dict")
+print(pickleMinPDSeries)
 
+print("\nSee a portion of Major , sorted High to Low")
+sortMajorSD = pickleMajPDSeries[0:7].sort_values(ascending=False)
+sortMinorSD = pickleMinPDSeries[0:7].sort_values(ascending=False)
+sortPhonemes = phonemeSeries.sort_values(ascending=False)
+print(pickleMajPDSeries[0:7].sort_values(ascending=False))
+print("\nStill sorted?")
+print(pickleMajPDSeries)
+print("Pandas Series values as sum")
+sumMajorSD = sortMajorSD.sum()
+sumMinorSD = sortMinorSD.sum()
+probMajorSD = sortMajorSD/sortMajorSD.sum()
+probMinorSD = sortMinorSD/sortMinorSD.sum()
+
+
+
+"""
 print("Tally dictionary size: Phonemes")
 tallyPhonemes = sumDictValues(phonemeDictionary)
 print(tallyPhonemes)
@@ -176,7 +215,7 @@ print('\n')
 print("Write .dat file at")
 print(AMPLDatFilepath)
 constructDatFile(AMPLDatFilepath, majorDict, tallyMajDict, phonemeDictionary, tallyPhonemes, weight, assignments)
-
+"""
 """
     Insert MISSING section on running AMPL NEOS server
 """
@@ -230,9 +269,11 @@ entireOutputPath1 = outputPath+"measure1.mid"
 measure1 = buildMeasure(chunkList[0],d,phonemeDegreeDictionary,majScale)
 measure1.write('midi',entireOutputPath1)
 measure1.show('lily')
+"""
 entireOutputPath2 = outputPath+"10things_major.mid"#"measure1.mid"
 print("\nBuild  piece, measure by measure")
 piece = buildPiece(chunkList,d,phonemeDegreeDictionary,majScale)
 print("\nOutput useable piece information")
 piece.write('midi',entireOutputPath2)
 piece.show("lily")
+"""
