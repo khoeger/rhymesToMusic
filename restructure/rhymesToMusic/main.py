@@ -7,7 +7,7 @@ Currently:
     - list all imports
     - list any necessary constants
     - Functions
-        - read text -> clean text -> extract phonemes
+        - read text -> clean text -> extract phonemesS
     - Test
         - read text -> clean text -> extract phonemes
 
@@ -117,7 +117,7 @@ cleanList = cleanPhonemeList(phonemesOut[0])
 print("Tally Phonemes in Dictionary\n")
 phonemeDictionary = tallyList(cleanList,{})
 print(phonemeDictionary)
-"""
+#"""
 # Corpus Operations before pickle
 print("\n \n \n")
 print("Accessing Corpus")
@@ -132,13 +132,13 @@ sampleKey = samplePiece.analyze('key')
 sampleTranspose = transposeMelody(samplePiece, sampleKey, final_major_key, final_minor_key)
 #sampleTranspose.show('lily')
 #sampleTranspose.show('midi')
-"""
+#"""
 
 """
     Modularize better!!!!
 """
 
-"""
+#"""
 #print("\n \n \n")
 print("Count degree occurrences")
 #pitchList = sampleTranspose.pitches
@@ -159,11 +159,17 @@ print('\n')
 print("Minor Key Scale Degree Frequency Dictionary")
 print(minorDict)
 print('\n')
-"""
+#"""
 print("\nPlace dictionaries in pandas as series")
+"""
 phonemeSeries = pandas.Series(phonemeDictionary)
 majorPDName = corpus_chosen+"_pdseries_major"
 minorPDName = corpus_chosen+"_pdseries_minor"
+"""
+#phonemeSeries = pandas.DataFrame.from_dict(phonemeDictionary,orient='index')
+phonemeSeries = pandas.DataFrame(list(phonemeDictionary.items()),columns=["phoneme","# of occurences"])
+majorPDName = corpus_chosen+"_pdseries_major.pickle"
+minorPDName = corpus_chosen+"_pdseries_minor.pickle"
 """
 majorPDSeries = pandas.Series(majorDict)
 minorPDSeries = pandas.Series(minorDict)
@@ -174,18 +180,36 @@ print(minorPDSeries)
 majorPDSeries.to_pickle(majorPDName)
 minorPDSeries.to_pickle(minorPDName)
 """
+#"""
+#majorPDSeries = pandas.DataFrame.from_dict(majorDict,orient='index')
+#minorPDSeries = pandas.DataFrame.from_dict(minorDict,orient='index')
+majorPDSeries = pandas.DataFrame(list(majorDict.items()),columns=["scale degree","# of occurences"])
+minorPDSeries = pandas.DataFrame(list(minorDict.items()),columns=["scale degree","# of occurences"])
+print("Major pandas Dictionary, airdsAirs")
+print(majorPDSeries)
+print("Minor pandas Dictionary, airdsAirs")
+print(minorPDSeries)
+majorPDSeries.to_pickle(majorPDName)
+minorPDSeries.to_pickle(minorPDName)
+#"""
 pickleMajPDSeries = pandas.read_pickle(majorPDName)
 pickleMinPDSeries = pandas.read_pickle(minorPDName)
 print("\nPickled Pandas Major Scale Degree Dict")
 print(pickleMajPDSeries)
 print("Pickled Pandas Minor Scale Degree Dict")
 print(pickleMinPDSeries)
+print("Column Names")
+print(list(pickleMajPDSeries.columns.values))
+print("Scale Degrees, Maj")
+print(pickleMajPDSeries["scale degree"])
+print("Scale Degree # of Occurences, Maj")
+print(pickleMajPDSeries["# of occurences"])
 
 print("\nSee a portion of Major , sorted High to Low")
-sortMajorSD = pickleMajPDSeries[0:7].sort_values(ascending=False)
-sortMinorSD = pickleMinPDSeries[0:7].sort_values(ascending=False)
-sortPhonemes = phonemeSeries.sort_values(ascending=False)
-print(pickleMajPDSeries[0:7].sort_values(ascending=False))
+sortMajorSD = pickleMajPDSeries[0:7].sort_values(ascending=False, by="# of occurences")
+sortMinorSD = pickleMinPDSeries[0:7].sort_values(ascending=False, by="# of occurences")
+sortPhonemes = phonemeSeries.sort_values(ascending=False, by="# of occurences")
+print(pickleMajPDSeries[0:7].sort_values(ascending=False, by="# of occurences"))
 print("\nStill sorted?")
 print(pickleMajPDSeries)
 print("Pandas Series values as sum")
@@ -193,6 +217,8 @@ sumMajorSD = sortMajorSD.sum()
 sumMinorSD = sortMinorSD.sum()
 probMajorSD = sortMajorSD/sortMajorSD.sum()
 probMinorSD = sortMinorSD/sortMinorSD.sum()
+print(probMajorSD)
+
 
 
 
