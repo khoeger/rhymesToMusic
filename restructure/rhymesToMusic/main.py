@@ -46,6 +46,7 @@ from numerical_operations.dictionaryEntries import *
 from numerical_operations.createAMPL import *
 from numerical_operations.outputToDict import *
 from parseTextAsMusic.parseText import *
+from dictionary_construction.dictToPandas import *
 """
 #   Constants
 """
@@ -138,7 +139,7 @@ sampleTranspose = transposeMelody(samplePiece, sampleKey, final_major_key, final
     Modularize better!!!!
 """
 
-#"""
+""" # To use pre-pickle
 #print("\n \n \n")
 print("Count degree occurrences")
 #pitchList = sampleTranspose.pitches
@@ -159,7 +160,7 @@ print('\n')
 print("Minor Key Scale Degree Frequency Dictionary")
 print(minorDict)
 print('\n')
-#"""
+"""
 print("\nPlace dictionaries in pandas as series")
 """
 phonemeSeries = pandas.Series(phonemeDictionary)
@@ -180,7 +181,7 @@ print(minorPDSeries)
 majorPDSeries.to_pickle(majorPDName)
 minorPDSeries.to_pickle(minorPDName)
 """
-#"""
+""" # TO use to pickle
 #majorPDSeries = pandas.DataFrame.from_dict(majorDict,orient='index')
 #minorPDSeries = pandas.DataFrame.from_dict(minorDict,orient='index')
 majorPDSeries = pandas.DataFrame(list(majorDict.items()),columns=["scale degree","# of occurences"])
@@ -191,7 +192,8 @@ print("Minor pandas Dictionary, airdsAirs")
 print(minorPDSeries)
 majorPDSeries.to_pickle(majorPDName)
 minorPDSeries.to_pickle(minorPDName)
-#"""
+"""
+""" # pandas tests
 pickleMajPDSeries = pandas.read_pickle(majorPDName)
 pickleMinPDSeries = pandas.read_pickle(minorPDName)
 print("\nPickled Pandas Major Scale Degree Dict")
@@ -218,8 +220,12 @@ sumMinorSD = sortMinorSD.sum()
 probMajorSD = sortMajorSD/sortMajorSD.sum()
 probMinorSD = sortMinorSD/sortMinorSD.sum()
 print(probMajorSD)
-
-
+"""
+# create dictionary for sorting!
+structure = init_assignment_structure(majorPDName)
+print("\nThe pickled Major Scale Degree List\n")
+print(structure)
+print("\n")
 
 
 """

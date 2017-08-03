@@ -44,5 +44,17 @@ def init_scale_deg_phoneme_mapping():
     dictionary = {}
     return(dictionary)
 
-def init_assignment_structure(scaleDegList):
-    return
+def init_assignment_structure(scaleDegListPickle):
+    dictionary = pandas.read_pickle(scaleDegListPickle)
+    dictionary = dictionary.drop(dictionary.index[7])
+    sumOccurences = dictionary["# of occurences"].sum()
+    dictionary["capacity"] = dictionary["# of occurences"]/sumOccurences
+    numDegrees = len(dictionary["# of occurences"])
+    emptyList = [[]for i in range(0,numDegrees)]
+    zeros = [0 for i in range(0,numDegrees)]
+    dictionary["phonemes"] = pandas.Series(emptyList)
+    dictionary["phoneme weights"] = pandas.Series(emptyList)
+    dictionary["current weight"] = pandas.Series(zeros)
+    dictionary["remainder"] = dictionary["capacity"]
+    dictionary = dictionary.sort_values(ascending=False,by="remainder")
+    return(dictionary)
