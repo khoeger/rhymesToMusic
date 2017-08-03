@@ -38,12 +38,6 @@ import pickle
             For each phoneme in the assigned list
                 i. Add a dicionary entry with phoneme: scale-degree
 """
-
-def init_scale_deg_phoneme_mapping():
-    """ initialize empty mapping dictionary """
-    dictionary = {}
-    return(dictionary)
-
 def init_assignment_structure(scaleDegListPickle):
     dictionary = pandas.read_pickle(scaleDegListPickle)
     dictionary = dictionary.drop(dictionary.index[7])
@@ -51,10 +45,51 @@ def init_assignment_structure(scaleDegListPickle):
     dictionary["capacity"] = dictionary["# of occurences"]/sumOccurences
     numDegrees = len(dictionary["# of occurences"])
     emptyList = [[]for i in range(0,numDegrees)]
-    zeros = [0 for i in range(0,numDegrees)]
+    emptyList2 = [[]for i in range(0,numDegrees)]
+    #zeroList = [0 for i in range(0,numDegrees)]
     dictionary["phonemes"] = pandas.Series(emptyList)
-    dictionary["phoneme weights"] = pandas.Series(emptyList)
-    dictionary["current weight"] = pandas.Series(zeros)
+    dictionary["phoneme weights"] = pandas.Series(emptyList2)
+    #dictionary["current weight"] = pandas.Series(zeroList)
     dictionary["remainder"] = dictionary["capacity"]
     dictionary = dictionary.sort_values(ascending=False,by="remainder")
     return(dictionary)
+
+def assignPhonemesToNotes(scaleDegListPickle,phonemeDF):
+    # initialize
+    #phonemeMappingDictionary = {} #phoneme output dictionary
+    structure = init_assignment_structure(scaleDegListPickle) # phoneme/note mapping structure
+
+    #for index, row in phonemeDF.iterrows():
+    phonemeLen = len(phonemeDF["phoneme"])
+    for i in range(0,phonemeLen):
+        phoneme = phonemeDF.get_value(index=i,col="phoneme")
+        percentage = phonemeDF.get_value(index=i,col="percentages")
+        print(phoneme,percentage)
+
+        # sort structure from high remainder to low
+        structure = structure.sort_values(ascending=False, by="remainder")
+
+        # get first index
+        first = structure.first_valid_index()
+
+        # Assign phoneme to highest remainder byteToString
+        newPList = structure.get_value(index=first,col="phonemes")
+        newPList.append(phoneme)
+        structure.set_value(index=first,col="phonemes",value=newPList)
+
+        # List phoneme weights
+        newPWList = structure.get_value(index=first,col="phoneme weights")
+        newPWList.append(percentage)
+        structure.set_value( index=first, col="phoneme weights", value=newPWList )
+
+        # Calculate total phoneme weights
+        #weight = structure.get_value(index=first,col="current weight")
+        #weight = sum(newPWList)
+        #structure.set_value(index=first, col="current weight", value = weight)
+
+        capacity = structure.get_value(index=first,col="remainder")
+        capacity = capacity - percentage
+        structure.set_value(index=first, col="remainder", value = capacity)
+
+    return(structure)
+    #return(phonemeMappingDictionary)

@@ -169,6 +169,11 @@ minorPDName = corpus_chosen+"_pdseries_minor"
 """
 #phonemeSeries = pandas.DataFrame.from_dict(phonemeDictionary,orient='index')
 phonemeSeries = pandas.DataFrame(list(phonemeDictionary.items()),columns=["phoneme","# of occurences"])
+phonemeSeriesSum = phonemeSeries["# of occurences"].sum()
+phonemeSeries["percentages"] = phonemeSeries["# of occurences"]/phonemeSeriesSum
+phonemeSeries = phonemeSeries.sort_values(ascending=False,by="percentages")
+print(phonemeSeries)
+
 majorPDName = corpus_chosen+"_pdseries_major.pickle"
 minorPDName = corpus_chosen+"_pdseries_minor.pickle"
 """
@@ -223,11 +228,15 @@ print(probMajorSD)
 """
 # create dictionary for sorting!
 structure = init_assignment_structure(majorPDName)
-print("\nThe pickled Major Scale Degree List\n")
+print("\nThe Major Scale Degree Phoneme Assignment DataFrame\n")
 print(structure)
 print("\n")
 
-
+# Test sorting algorithm
+sortedStructure = assignPhonemesToNotes(majorPDName,phonemeSeries)
+print("\nThe sorting structure! \n")
+print(sortedStructure)
+print("\n")
 """
 print("Tally dictionary size: Phonemes")
 tallyPhonemes = sumDictValues(phonemeDictionary)
