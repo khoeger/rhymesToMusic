@@ -237,6 +237,12 @@ sortedStructure = assignPhonemesToNotes(majorPDName,phonemeSeries)
 print("\nThe sorting structure! \n")
 print(sortedStructure)
 print("\n")
+
+# Test dictionary building!
+phonemeDict = createDictionary(sortedStructure)
+print("\nDictionary of Phonemes - 8/4/17\n")
+print(phonemeDict)
+print("\n")
 """
 print("Tally dictionary size: Phonemes")
 tallyPhonemes = sumDictValues(phonemeDictionary)
@@ -260,6 +266,7 @@ constructDatFile(AMPLDatFilepath, majorDict, tallyMajDict, phonemeDictionary, ta
 """
     Insert MISSING section on running AMPL NEOS server
 """
+""" # Unnecessary now -8-4-2017
 #print('\n')
 print('\n')
 print("Extracting Feaspump AB results")
@@ -278,7 +285,7 @@ print('\n')
 print("Build Phoneme, Degree Dictionary")
 phonemeDegreeDictionary = degPhonemeDict(listOfAssignments)
 print(phonemeDegreeDictionary)
-
+"""
 """
     Translate Text to Music using Dictionary
     - read text file
@@ -307,14 +314,14 @@ print(chunkList)
 
 print("\nConvert select words to music")
 entireOutputPath1 = outputPath+"measure1.mid"
-measure1 = buildMeasure(chunkList[0],d,phonemeDegreeDictionary,majScale)
+measure1 = buildMeasure(chunkList[0],d,phonemeDict,majScale)
 measure1.write('midi',entireOutputPath1)
 measure1.show('lily')
-"""
+#"""
 entireOutputPath2 = outputPath+"10things_major.mid"#"measure1.mid"
 print("\nBuild  piece, measure by measure")
-piece = buildPiece(chunkList,d,phonemeDegreeDictionary,majScale)
+piece = buildPiece(chunkList,d,phonemeDict,majScale)
 print("\nOutput useable piece information")
 piece.write('midi',entireOutputPath2)
 piece.show("lily")
-"""
+#"""
