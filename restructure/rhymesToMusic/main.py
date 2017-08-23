@@ -320,7 +320,7 @@ measure1.show('lily')
 #"""
 entireOutputPath2 = outputPath+"10things_major.mid"#"measure1.mid"
 print("\nBuild  piece, measure by measure")
-piece = buildPiece(chunkList,d,phonemeDict,majScale)
+piece = buildPiece(chunkList[29:30],d,phonemeDict,majScale)
 print("\nOutput useable piece information")
 piece.write('midi',entireOutputPath2)
 piece.show("lily")

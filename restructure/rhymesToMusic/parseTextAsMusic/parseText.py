@@ -74,13 +74,9 @@ def buildMeasure(chunk,d,dictionary,scale):
     ePuncChunk = endPunctuation(chunk)
 
     measure = mus.stream.Stream()
-    fPuncChunkOn = 0
-    texChunkOn = 0
-    ePuncChunkOn = 0
     convertList = []
 
     if fPuncChunk != '':
-        fPuncChunkOn = 1
         convertList.append('REST')
     if textChunk != '':
         #textChunkOn = 1
@@ -89,7 +85,6 @@ def buildMeasure(chunk,d,dictionary,scale):
         #textChunkPhonemeLen = len(textChunkPhonemesClean)
         convertList = convertList + textChunkPhonemesClean
     if ePuncChunk != '':
-        ePuncChunkOn = 1
         convertList.append('REST')
     #print("convertList")
     #print(convertList)
@@ -124,6 +119,7 @@ def buildPiece(chunkList,d,dictionary,scale):
     #for chunk in chunkList:
     for i in range(0,len(chunkList)):
         print(i)
+        print(chunkList[i])
         #measure = buildMeasure(chunk,d,dictionary,scale)
         measure = buildMeasure(chunkList[i],d,dictionary,scale)
         print("measure created!")
