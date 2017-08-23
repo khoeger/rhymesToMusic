@@ -318,9 +318,21 @@ measure1 = buildMeasure(chunkList[0],d,phonemeDict,majScale)
 measure1.write('midi',entireOutputPath1)
 measure1.show('lily')
 #"""
+
+testOutput = chunkList[29:30][0]
+print("Test Output")
+print(testOutput)
+print(type(testOutput))
+print("Front Chunk")
+print(frontPunctuation(testOutput))
+print("Word Chunk")
+print(textChunk(testOutput))
+print("End Chunk")
+print(endPunctuation(testOutput))
+
 entireOutputPath2 = outputPath+"10things_major.mid"#"measure1.mid"
 print("\nBuild  piece, measure by measure")
-piece = buildPiece(chunkList[29:30],d,phonemeDict,majScale)
+piece = buildPiece(testOutput,d,phonemeDict,majScale)
 print("\nOutput useable piece information")
 piece.write('midi',entireOutputPath2)
 piece.show("lily")
