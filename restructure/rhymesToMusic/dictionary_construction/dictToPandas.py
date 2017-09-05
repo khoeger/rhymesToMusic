@@ -64,7 +64,6 @@ def assignPhonemesToNotes(scaleDegListPickle,phonemeDF):
     for i in range(0,phonemeLen):
         phoneme = phonemeDF.get_value(index=i,col="phoneme")
         percentage = phonemeDF.get_value(index=i,col="percentages")
-        print(phoneme,percentage)
 
         # sort structure from high remainder to low
         structure = structure.sort_values(ascending=False, by="remainder")
