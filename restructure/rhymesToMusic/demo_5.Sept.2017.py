@@ -11,6 +11,7 @@ from nltk.corpus import cmudict
 from nltk.tokenize import TweetTokenizer
 import pandas
 import pickle
+import sys
 
 from text_processing.readTextFile import *
 from text_processing.textCleaning import *
@@ -31,7 +32,7 @@ encodingType2 = "utf-8"#"IBM500" #"utf-8"
 corpus_chosen = 'airdsAirs'
 final_major_key = 'C5'#'F#4'
 final_minor_key = 'A4'#'Eb4'
-outpath = ( "C:\\Users\\katar\\Documents\\2017\\music\\computerMusic",
+outpath = ( "C:\\Users\\katar\\Documents\\2017\\music\\computerMusic"
             "\\CsoundMeetup\\demo_9_5_2017")
 
 # --- User solicitedinput
@@ -49,8 +50,13 @@ print("\nGenerating a melody in a "+scaleType+" key using your input text.\n")
 # --- Pre calculated values
 d = cmudict.dict()
 tknzr = TweetTokenizer()
-majScale = mus.scale.MajorScale(final_major_key)
-minScale = mus.scale.MinorScale(final_minor_key)
+if scaleType == 'major':
+    usedScale = mus.scale.MajorScale(final_major_key)
+elif scaleType == 'minor':
+    usedScale = mus.scale.MinorScale(final_minor_key)
+else:
+    print("The scale given, "+scaleType+", is not a recognized scale. Terminating.")
+    sys.exit()
 minorDict = {}
 majorDict = {}
 print(" ... ")
@@ -74,3 +80,17 @@ structure = init_assignment_structure(pDName)
 sortedStructure = assignPhonemesToNotes(pDName,phonemeSeries)
 phonemeDict = createDictionary(sortedStructure)
 print(" ... ")
+
+readText = lowerInput
+chunkList = readText.split()
+print(outputName)
+print(type(outputName))
+
+musicOutpath = outpath + outputName +".mid"
+scoreOutpath = outpath + outputName +".ly"
+
+melodyOut = buildPiece(readText,d,phonemeDict,usedScale)
+melodyOut.write('midi',musicOutpath)
+melodyOut.write('lily',scoreOutpath)
+melodyOut.show('lily')
+melodyOut.show('midi')
