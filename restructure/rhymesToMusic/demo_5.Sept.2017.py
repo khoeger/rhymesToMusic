@@ -33,7 +33,7 @@ corpus_chosen = 'airdsAirs'
 final_major_key = 'C5'#'F#4'
 final_minor_key = 'A4'#'Eb4'
 outpath = ( "C:\\Users\\katar\\Documents\\2017\\music\\computerMusic"
-            "\\CsoundMeetup\\demo_9_5_2017")
+            "\\CsoundMeetup\\demo_9_5_2017\\")
 
 # --- User solicitedinput
 print(  "\nWhen inputting text, please do not use punctuation, apart",
@@ -83,13 +83,11 @@ print(" ... ")
 
 readText = lowerInput
 chunkList = readText.split()
-print(outputName)
-print(type(outputName))
 
 musicOutpath = outpath + outputName +".mid"
 scoreOutpath = outpath + outputName +".ly"
 
-melodyOut = buildPiece(readText,d,phonemeDict,usedScale)
+melodyOut = buildPiece(chunkList,d,phonemeDict,usedScale)
 melodyOut.write('midi',musicOutpath)
 melodyOut.write('lily',scoreOutpath)
 melodyOut.show('lily')
