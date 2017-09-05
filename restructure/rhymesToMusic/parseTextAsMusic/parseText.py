@@ -90,13 +90,6 @@ def buildMeasure(chunk,d,dictionary,scale):
     tChunk = tChunk.lower()
     ePuncChunk = endPunctuation(chunk)
 
-    print("Front punctuation")
-    print(fPuncChunk)
-    print("Word Chunk")
-    print(tChunk)
-    print("End Chunk")
-    print(ePuncChunk)
-
     measure = mus.stream.Stream()
     convertList = []
 
@@ -122,16 +115,13 @@ def buildMeasure(chunk,d,dictionary,scale):
     dur = mus.duration.Duration(noteLength)
 
     for element in convertList:
-        print("element is")
-        print(element)
+
         if element == 'REST':
             charRest = mus.note.Rest()
             charRest.duration = dur
             measure.append(charRest)
         else:
             pVal = phonemeToPitchVal(dictionary,element,scale)
-            print("pval,type(pval)")
-            print(pVal,type(pVal))
             pValNote = mus.note.Note(pVal)
             pValNote.duration = dur
             measure.append(pValNote)
@@ -142,10 +132,7 @@ def buildPiece(chunkList,d,dictionary,scale):
     piece = mus.stream.Stream()
     #for chunk in chunkList:
     for i in range(0,len(chunkList)):
-        print(i)
-        print(chunkList[i])
         #measure = buildMeasure(chunk,d,dictionary,scale)
         measure = buildMeasure(chunkList[i],d,dictionary,scale)
-        print("measure created!")
         piece.append(measure)
     return(piece)
