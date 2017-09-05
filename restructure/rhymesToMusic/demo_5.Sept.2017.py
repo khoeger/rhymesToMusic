@@ -34,6 +34,7 @@ final_minor_key = 'A4'#'Eb4'
 outpath = ( "C:\\Users\\katar\\Documents\\2017\\music\\computerMusic",
             "\\CsoundMeetup\\demo_9_5_2017")
 
+# --- User solicitedinput
 print(  "\nWhen inputting text, please do not use punctuation, apart",
         " from typically used contractions. \nPlease do not use slang.",
         " \nPlease use English.\n")
@@ -42,4 +43,34 @@ inputText = input("Please enter a string of text to convert: \n\n")
 
 scaleType = input("\nChoose a type of scale: \n    major\n    minor \n\n")
 
+outputName = input("\nType an output file name. For example 'filename' will become filename.mid\n\n")
 print("\nGenerating a melody in a "+scaleType+" key using your input text.\n")
+
+# --- Pre calculated values
+d = cmudict.dict()
+tknzr = TweetTokenizer()
+majScale = mus.scale.MajorScale(final_major_key)
+minScale = mus.scale.MinorScale(final_minor_key)
+minorDict = {}
+majorDict = {}
+print(" ... ")
+
+# --- Start converting the inputText to music
+lowerInput = inputText.lower()
+wordList = tknzr.tokenize(lowerInput)
+phonemesOut = wordL2phonemeL(wordList,d)
+cleanList = cleanPhonemeList(phonemesOut[0])
+phonemeDictionary = tallyList(cleanList,{})
+print(" ... ")
+# Corups cleaning things skipped
+
+phonemeSeries = pandas.DataFrame(list(phonemeDictionary.items()),columns=["phoneme","# of occurences"])
+phonemeSeriesSum = phonemeSeries["# of occurences"].sum()
+phonemeSeries["percentages"] = phonemeSeries["# of occurences"]/phonemeSeriesSum
+phonemeSeries = phonemeSeries.sort_values(ascending=False,by="percentages")
+
+pDName = corpus_chosen+"_pdseries_"+scaleType+".pickle"
+structure = init_assignment_structure(pDName)
+sortedStructure = assignPhonemesToNotes(pDName,phonemeSeries)
+phonemeDict = createDictionary(sortedStructure)
+print(" ... ")
