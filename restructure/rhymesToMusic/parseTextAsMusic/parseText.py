@@ -17,12 +17,29 @@ from text_processing.wordsToPhonemes import *
 d = cmudict.dict()
 
 #-------------------------------
+def isPunctuation(chunk):
+    pattern = re.compile("[^a-zA-Z]+")
+    punctuationList = re.findall(pattern,chunk)
+    return(punctuationList)
 
-#def phraseMaker(inString):
-#    """
-#    A phrase is a line w/out newline? Or with period.
-#    Break input section into phrases (Also need function to break into sections)
-#    """
+def letterOrNot(chunkPiece,pattern):
+    if re.findall(pattern,chunkPiece)==[]:
+        return("letter")
+    else:
+        return("other")
+
+def punctuationSlots(chunk,punctuationList):
+    pattern = re.compile("[^a-zA-Z]+")
+
+    front = chunk[0]
+    end = chunk[-1]
+
+    # is the first char a letter?
+    firstChar = letterOrNot(front,pattern)
+    if firstChar == "letter":
+        pass
+    return("ADD A VALUE")
+
 def frontPunctuation(chunk):
     pattern = re.compile("[\n ][^a-zA-Z0-9]+")
     frontPunc = re.findall(pattern,chunk)
@@ -73,14 +90,17 @@ def buildMeasure(chunk,d,dictionary,scale):
     tChunk = tChunk.lower()
     ePuncChunk = endPunctuation(chunk)
 
+    print("Front punctuation")
+    print(fPuncChunk)
+    print("Word Chunk")
+    print(tChunk)
+    print("End Chunk")
+    print(ePuncChunk)
+
     measure = mus.stream.Stream()
-    fPuncChunkOn = 0
-    texChunkOn = 0
-    ePuncChunkOn = 0
     convertList = []
 
     if fPuncChunk != '':
-        fPuncChunkOn = 1
         convertList.append('REST')
     if textChunk != '':
         #textChunkOn = 1
@@ -89,7 +109,6 @@ def buildMeasure(chunk,d,dictionary,scale):
         #textChunkPhonemeLen = len(textChunkPhonemesClean)
         convertList = convertList + textChunkPhonemesClean
     if ePuncChunk != '':
-        ePuncChunkOn = 1
         convertList.append('REST')
     #print("convertList")
     #print(convertList)
@@ -124,6 +143,7 @@ def buildPiece(chunkList,d,dictionary,scale):
     #for chunk in chunkList:
     for i in range(0,len(chunkList)):
         print(i)
+        print(chunkList[i])
         #measure = buildMeasure(chunk,d,dictionary,scale)
         measure = buildMeasure(chunkList[i],d,dictionary,scale)
         print("measure created!")

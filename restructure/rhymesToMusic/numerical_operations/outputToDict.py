@@ -34,6 +34,20 @@ def extractDegreePhonemeString(inString, scaleDegreePattern, phonemePattern):
     phonemeStr = phonemePattern.findall(inString)[-1]
     return([phonemeStr, scaleDeg])
 
+def phonemeListToDictEntries(inlist,dictionary,common):
+    for entry in inlist:
+        dictionary[entry] = common
+    return(dictionary)
+
+def createDictionary(structure):
+    dictionary = {}
+    structureLen = len(structure["scale degree"])
+    for i in range(0,structureLen):
+        common = int(structure.get_value(index=i,col="scale degree"))
+        inlist = structure.get_value(index=i,col="phonemes")
+        phonemeListToDictEntries(inlist,dictionary,common)
+    return(dictionary)
+
 def degPhonemeDict(inStringList):
     """
     Given a string list:
