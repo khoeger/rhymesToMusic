@@ -17,7 +17,7 @@ from text_processing.wordsToPhonemes import *
 d = cmudict.dict()
 
 #-------------------------------
-def idPunctuation(chunk):
+def isPunctuation(chunk):
     pattern = re.compile("[^a-zA-Z]+")
     punctuationList = re.findall(pattern,chunk)
     return(punctuationList)
@@ -38,7 +38,7 @@ def punctuationSlots(chunk,punctuationList):
     firstChar = letterOrNot(front,pattern)
     if firstChar == "letter":
         pass
-    return("ADD A VALUE") 
+    return("ADD A VALUE")
 
 def frontPunctuation(chunk):
     pattern = re.compile("[\n ][^a-zA-Z0-9]+")
