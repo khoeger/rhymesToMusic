@@ -4,13 +4,35 @@ Run demo melody conversion
 print("\n \n ")
 print("~Converting text to melody~\n")
 
-print("\n... Loading packages...\n")
+print("\n... Loading packages & modules ...\n")
 import re
 import music21 as mus
 from nltk.corpus import cmudict
 from nltk.tokenize import TweetTokenizer
 import pandas
 import pickle
+
+from text_processing.readTextFile import *
+from text_processing.textCleaning import *
+from text_processing.wordsToPhonemes import *
+from dictionary_construction.phonemeDictionary import *
+from music_processing.read_corpus import *
+from music_processing.cleanPieces import *
+from dictionary_construction.noteFreqDictionary import *
+from numerical_operations.dictionaryEntries import *
+from numerical_operations.createAMPL import *
+from numerical_operations.outputToDict import *
+from parseTextAsMusic.parseText import *
+from dictionary_construction.dictToPandas import *
+
+print("\n... Setting constants ...\n")
+
+encodingType2 = "utf-8"#"IBM500" #"utf-8"
+corpus_chosen = 'airdsAirs'
+final_major_key = 'C5'#'F#4'
+final_minor_key = 'A4'#'Eb4'
+outpath = ( "C:\\Users\\katar\\Documents\\2017\\music\\computerMusic",
+            "\\CsoundMeetup\\demo_9_5_2017")
 
 print(  "\nWhen inputting text, please do not use punctuation, apart",
         " from typically used contractions. \nPlease do not use slang.",
