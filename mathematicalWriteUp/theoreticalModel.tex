@@ -1,0 +1,77 @@
+\section{Model Formulation}
+The linear programming representation I developed offhand was as follows.
+\subsection{Definitions and Notation}
+\subsubsection*{Sets}
+The sets of phonemes, $\mathcal{P}$, and scale degrees, $\mathcal{S}$ are used in defining this linear program. 
+
+\begin{tabular}{c c l l}
+\textbf{Symbol} & \textbf{Composition} & \textbf{Name} & \textbf{Description} \\
+$\mathcal{P}$ & $\{p_1,p_2,\hdots,p_k\}$ & Phonemes & the set of $k$ alphabet-phonemes extracted from the input text\\
+$\mathcal{S}$ & $\{s_1,s_2,\hdots,s_l\}$ & Scale Degrees & the set of all scale degrees from a given musical database\\
+\end{tabular}
+
+\subsubsection*{Decision Variables}
+The variables, $X(p,s)$ and $Y(p,s)$ help us determine how much of each phoneme is assigned to which scale degree. We will determine their values through the optimization. 
+
+\begin{tabular}{c l l}
+\textbf{Symbol} & \textbf{Description} \\
+$X(p,s)$ & amount of phoneme $p$ assigned to scale degree $s$\\
+$Y(p,s)$ & binary indicator variable indicating if phoneme $p$ was assigned to scale degree $s$\\
+\end{tabular}
+
+\subsubsection*{Parameters}
+Our parameters include $A$, $W$, $C(p)$, and $D(s)$. $A$ and $W$ are constants. $\bar{C}$ and $\bar{D}$ are fixed vectors composed of $C(p)$ and $D(s)$. As the sum over all probabilities in a space must be one, $\sum_p C(p)=1$ and $\sum_s D(s)=1$.
+
+\begin{tabular}{c l l}
+\textbf{Symbol} & \textbf{Description} \\
+$A$ & number of scale degrees one phoneme $p$ can be assigned to\\
+$W$ & large weight\\
+$C(p)$ & probability of phoneme $p$ occurring in the text\\
+$D(s)$ & probability of scale degree $s$ occurring in the musical corpus\\
+\end{tabular}
+
+\subsection{Objective}
+Our goal is to maximize the amount of allocated phonemes, or minimize the amount of unallocated phonemes. 
+\begin{align}
+\min && -\sum_p \sum_s X(p,s).
+\end{align}
+\subsection{Constraints}
+The amount assigned to a scale degree $s$ cannot exceed the probability of that scale degree occurring, $D(s)$.
+\begin{align}
+\sum_p X(p,s) && \leq && D(s) , && \forall s\in \mathcal{S}.
+\end{align}
+
+Similarly, the amount of phoneme $p$ assigned to a set of scale degrees cannot exceed the probability of that phoneme occurring, $C(p)$.
+\begin{align}
+\sum_s X(p,s) && \leq && C(p), && \forall p\in \mathcal{P}.
+\end{align}
+
+\textit{All phonemes $p$ such that $C(p)\geq 0$ need to be assigned to some scale degree... but this will happen because of the objective? Check - July 5 in notebook, but probably unnecessary constraint  }
+
+Phoneme $p$ must be assigned to $A$ buckets. \textit{This constraint is an equality... hm... bad. }
+\begin{align}
+\sum_s Y(p,s) && = && A, && \forall p\in \mathcal{P}.
+\end{align}
+
+The amount of phoneme $p$ assigned to $A$ buckets is restricted.
+\begin{align}
+X(p,s) && \leq && W \times Y(p,s), && \forall p \in \mathcal{P}, s \in \mathcal{S}.
+\end{align}
+
+And, we need nonnegativity constraints. 
+\begin{align}
+X(p,s) && \geq && 0, && \forall p \in \mathcal{P}, s \in \mathcal{S},\\
+Y(p,s) && \geq && 0, && \forall p \in \mathcal{P}, s \in \mathcal{S}.
+\end{align}
+\subsection{Linear Program}
+Therefor, our linear program is
+\begin{align*}
+\min && -\sum_p \sum_s X(p,s) &&  && &&\\
+\text{s.t.} && \sum_p X(p,s) && \leq && D(s) , && \forall s\in \mathcal{S},\\
+&& \sum_s X(p,s) && \leq && C(p), && \forall p\in \mathcal{P},\\
+&& \sum_s Y(p,s) && = && A, && \forall p\in \mathcal{P},\\
+&& X(p,s) && \leq && W \times Y(p,s), && \forall p \in \mathcal{P}, s \in \mathcal{S},\\
+&& X(p,s) && \geq && 0, && \forall p \in \mathcal{P}, s \in \mathcal{S},\\
+&& Y(p,s) && \geq && 0, && \forall p \in \mathcal{P}, s \in \mathcal{S}.
+\end{align*}
+

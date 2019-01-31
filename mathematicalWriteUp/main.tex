@@ -1,0 +1,136 @@
+\documentclass[11pt, oneside, notitlepage, openany]{report}
+
+%-- Packages
+\usepackage[utf8]{inputenc}
+\usepackage[]{appendix}
+\usepackage{tikz}
+\usepackage[final]{pdfpages}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{framed}
+\usepackage{float}
+\usepackage[margin=.75in]{geometry}
+\usepackage{multicol}
+%-- fancy chapters quotes
+\usepackage{quotchap}
+%- different width cols
+\usepackage{vwcol}
+\usepackage{graphicx}
+\usepackage{amsmath, mathtools}
+\usepackage{amsfonts}
+\usepackage[final]{pdfpages}
+%- different justification
+\usepackage{ragged2e}
+%- fonts
+\usepackage{libertine}
+\usepackage[T1]{fontenc}
+%----
+\usepackage{color,hyperref}
+    \catcode`\_=11\relax
+     \newcommand\email[1]{\_email #1\q_nil}
+    \def\_email#1@#2\q_nil{%
+      \href{mailto:#1@#2}{{\color{blue}\underline{{\emailfont #1\emailampersat #2}}}}
+    }
+    \newcommand\emailfont{\sffamily}
+    \newcommand\emailampersat{\small@}
+    \catcode`\_=8\relax    
+
+%-- set listings preferences
+\lstset{% general command to set parameter(s)
+basicstyle=\scriptsize}
+\newcommand{\khindent}{\hspace{.5cm}}
+
+% title
+\title{
+	{Rhymes to Music}\\
+	{\large Matching Algorithm}\\
+}
+\author{Katarina Hoeger}
+\date{December 2017}
+%----
+% Begin Document
+%----
+\begin{document}
+%----
+% Top Matter
+%----
+
+% remove page number
+%\pagenumbering{gobble} 
+
+% make title page
+\maketitle
+
+% frontmatter
+\input{frontmatter}
+%----
+% macros
+%----
+
+% web text
+\newcommand{\webtext}[1]{{\color{blue}\underline{#1}}}
+
+% section titles
+\newcommand{\titletext}[1]{
+\noindent \underline{{\large #1}}\\
+%\vspace*{-.8cm}
+}
+
+% section titles v2
+\newcommand{\titletexttwo}[1]{
+\vspace*{-.3cm}
+\noindent \underline{{\large #1}}\\
+\vspace*{-.8cm}
+}
+
+% subsection titles
+\newcommand{\subtitletext}[1]{{\raggedright \textsc{#1}}\\}
+
+% dividing line
+\newcommand{\dividingline}{
+\vspace{-1cm} {\center \hrulefill}}
+
+% spacing - between title and info
+\newcommand{\spacing}{\vspace*{-0.8cm}}
+
+% spacing - between header and next section
+\newcommand{\headerspacing}{\vspace*{0.4cm}}
+
+% spacing - between section and next section
+\newcommand{\sectionspacing}{\vspace*{-0.4cm}}
+
+% spacing - for udnerlined things spacing
+\newcommand{\underlinespacing}{\vspace*{0.1cm}}
+
+% spacing - small spacking
+\newcommand{\tinyspacing}{\vspace*{-0.1cm}}
+
+% spacing - large spacing
+%\newcommand{\largespace}{\vspace*{-0.9cm}}
+%----
+% Content
+%----
+\chapter{Abstract}
+\chapter{Introduction}
+\input{motivation}
+\chapter{Literature Review}
+\input{literatureReview}
+\chapter{Modeling Approach}
+\section{Background Model}
+\input{theoreticalModel}
+\section{Simplifications}
+\input{heuristic}
+\chapter{Testing}
+\chapter{Output}
+\chapter{Future Work and Conclusions}
+\input{conclusion}
+
+%----
+% End Matter
+%----
+\appendix
+%\input{bibliography}
+%%----
+%% End Document
+%%----
+\end{document}
