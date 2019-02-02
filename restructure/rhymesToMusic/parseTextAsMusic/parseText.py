@@ -41,7 +41,7 @@ def punctuationSlots(chunk,punctuationList):
     return("ADD A VALUE")
 
 def frontPunctuation(chunk):
-    pattern = re.compile("[\n ][^a-zA-Z0-9]+")
+    pattern = re.compile("[\n ]*[^a-zA-Z0-9]+")
     frontPunc = re.findall(pattern,chunk)
     if frontPunc == []:
         return("")
@@ -49,7 +49,7 @@ def frontPunctuation(chunk):
         return(frontPunc[0])
 
 def endPunctuation(chunk):
-    pattern = re.compile("[^a-zA-Z0-9]+[\n ]")
+    pattern = re.compile("[^a-zA-Z0-9]+[\n ]*")
     endPunc = re.findall(pattern,chunk)
     if endPunc == []:
         return("")
@@ -136,3 +136,41 @@ def buildPiece(chunkList,d,dictionary,scale):
         measure = buildMeasure(chunkList[i],d,dictionary,scale)
         piece.append(measure)
     return(piece)
+"""
+--- Learning RE library tricks ---
+
+>>> inputText = "This is my sample string. Long live the Queen!!!! Haha <3 \nSee, it's a new line!"
+>>>
+>>> pat4 = re.compile(r"([\n]+)")
+>>> pat4.split(inputText)
+['This is my sample string. Long live the Queen!!!! Haha <3 ', '\n', "See, it's a new line!"]
+>>>
+>>> pats4 = pat4.split(inputText)
+>>> pats4
+['This is my sample string. Long live the Queen!!!! Haha <3 ', '\n', "See, it's a new line!"]
+>>>
+>>> pat3 = re.compile("[ ]+")
+>>> pats3 = []
+>>> for i in pats4:
+...     x = pat3.split(i)
+...     for j in x:
+...             pats3.append(j)
+...
+>>> pats3
+['This', 'is', 'my', 'sample', 'string.', 'Long', 'live', 'the', 'Queen!!!!', 'Haha', '<3', '', '\n', 'See,', "it's", 'a', 'new', 'line!']
+>>>
+--- DON'T DO RIGHT AWAY ---
+    - also, remove the  ''
+>>>
+>>> pat2 = re.compile(r"(\W+)"
+... )
+>>> pats2 = []
+>>> for i in pats3:
+...     x = pat2.split(i)
+...     for j in x:
+...             pats2.append(j)
+...
+>>> pats2
+['This', 'is', 'my', 'sample', 'string', '.', '', 'Long', 'live', 'the', 'Queen', '!!!!', '', 'Haha', '', '<', '3', '', '', '\n', '', 'See', ',', '', 'it', "'", 's', 'a', 'new', 'line', '!', '']
+
+"""
