@@ -128,13 +128,78 @@ def buildMeasure(chunk,d,dictionary,scale):
 
     return(measure)
 
+def buildMeasure2(chunk,d,dictionary,scale):
+    """
+        Given an input chunk:
+        - determine measure rhythm from chunk list length
+        - build measure
+    """
+    # fPuncChunk = frontPunctuation(chunk)
+    # tChunk = textChunk(chunk)
+    # tChunk = tChunk.lower()
+    # ePuncChunk = endPunctuation(chunk)
+
+    measure = mus.stream.Stream()
+
+    convertList = chunk#[]
+
+    # if fPuncChunk != '':
+    #     convertList.append('REST')
+    # if textChunk != '':
+    #     #textChunkOn = 1
+    #     textChunkPhonemes = word2Phoneme(chunk,d)
+    #     textChunkPhonemesClean = rmNumsFrmStrList(textChunkPhonemes)
+    #     #textChunkPhonemeLen = len(textChunkPhonemesClean)
+    #     convertList = convertList + textChunkPhonemesClean
+    # if ePuncChunk != '':
+    #     convertList.append('REST')
+    # #print("convertList")
+    # #print(convertList)
+    mParts = len(convertList)
+    #print("mParts")
+    #print(mParts)
+    quarters = 4 # quarter notes per measure
+    noteLength = quarters/mParts
+    #print("noteLength")
+    #print(noteLength)
+
+    dur = mus.duration.Duration(noteLength)
+    #print(dur)
+    punctuation = re.compile(r"(\W+)")
+
+    for element in convertList:
+
+        if element == 'MeasureRest':
+            charRest = mus.note.Rest()
+            charRest.duration = mus.duration.Duration(quarters/2)
+            measure.append(charRest)
+        elif punctuation.fullmatch(element):
+            charRest = mus.note.Rest()
+            charRest.duration = dur#mus.duration.Duration(quarters/(mParts*2)) #dur
+            measure.append(charRest)
+        else:
+
+            #print(element)
+            #print(removeNums(element))
+            pVal = phonemeToPitchVal(dictionary,removeNums(element),scale)
+            pValNote = mus.note.Note(pVal)
+            pValNote.duration = dur
+            measure.append(pValNote)
+
+    return(measure)
+
 def buildPiece(chunkList,d,dictionary,scale):
     piece = mus.stream.Stream()
+    instr = mus.instrument.Ocarina()
+    piece.insert(0.0, instr)
     #for chunk in chunkList:
     for i in range(0,len(chunkList)):
+        if chunkList[i] == []:
+            pass
         #measure = buildMeasure(chunk,d,dictionary,scale)
-        measure = buildMeasure(chunkList[i],d,dictionary,scale)
-        piece.append(measure)
+        else:
+            measure = buildMeasure2(chunkList[i],d,dictionary,scale)
+            piece.append(measure)
     return(piece)
 """
 --- Learning RE library tricks ---

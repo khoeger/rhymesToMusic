@@ -32,6 +32,7 @@ def word2Phoneme(word,d):
     if word in keylist:
         phonemeOpt = d[word]
         return(phonemeOpt[0])
+        #print("Phoneme Options",phonemeOpt)
     else:
         return(word)
 
@@ -64,6 +65,6 @@ def wordL2phonemeL(wordList,d):
 def cleanPhonemeList(phonemeList):
     cleanPList = []
     for i in range(0,len(phonemeList)):
-        cleanEntry = rmNumsFrmStrList(phonemeList[i])
+        cleanEntry = rmNumsFrmStrList([phonemeList[i]])
         cleanPList.append(cleanEntry)
     return(cleanPList)
